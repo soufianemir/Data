@@ -1,31 +1,20 @@
-{{ config(
-    materialized='incremental',
-    unique_key='product_bk',
-    on_schema_change='sync_all_columns',
-    tags=['dim','scd1']
-) }}
+{{
+  config(
+    materialized = 'table',
+    full_refresh = true
+  )
+}}
 
-with base as (
+with src as (
   select
-    product_id   as product_bk,
+    product_id ,
+     concat('C_', cast(abs(FARM_FINGERPRINT(cast(product_id )) as string)) as sk_product,
     product_name,
     category_id,
     unit_price,
     discontinued,
     current_timestamp() as updated_at
   from {{ ref('stg_products') }}
-),
-dedup as (
-  select *
-  from base
-  qualify row_number() over (partition by product_bk order by updated_at desc) = 1
+
 )
-
-select
-  {{ sk_hash(["product_bk"]) }} as product_sk,
-  *
-from dedup
-
-{% if is_incremental() %}
--- Fallback sandbox : pas de MERGE, on reste insert+dedupe.
-{% endif %}
+  select * from src
