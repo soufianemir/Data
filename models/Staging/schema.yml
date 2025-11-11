@@ -7,3 +7,9 @@ models:
       - name: customer_id
         tests:
           - not_null
+  - name: stg_products
+    description: "Dimension Produit"
+    columns:
+      - name: product_id
+        tests:
+          - not_null

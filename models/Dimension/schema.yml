@@ -1,13 +1,13 @@
 version: 2
 
 models:
-  - name: dim_customers
-    description: "Dimension client (SK générée)"
+  - name: dim_customer
+    description: "Dimension client"
     columns:
       - name: customer_id
         tests:
           - not_null
-  - name: dim_prouct
+  - name: dim_product
     description: "Dimension Produit"
     columns:
       - name: product_id
