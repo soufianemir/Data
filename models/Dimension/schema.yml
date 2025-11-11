@@ -1,0 +1,16 @@
+version: 2
+
+models:
+  - name: dim_customers
+    description: "Dimension client (SK générée)"
+    columns:
+      - name: sk_customer
+        tests:
+          - not_null
+          - unique
+      - name: customer_id
+        tests:
+          - not_null
+      - name: email
+        tests:
+          - not_null

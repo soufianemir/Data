@@ -1,0 +1,16 @@
+version: 2
+
+sources:
+  - name: tp_source
+    database: analytics-476223
+    schema: tp_source
+    tables:
+      - name: customers
+        columns:
+          - name: customer_id
+            tests:
+              - not_null
+      - name: products
+      - name: orders
+      - name: order_details
+      - name: sellers
