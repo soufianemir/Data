@@ -12,7 +12,6 @@ with src as (
     product_name,
     category,
     unit_price,
-    discontinued,
     current_timestamp() as updated_at
   from {{ ref('stg_products') }}
 
