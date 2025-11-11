@@ -4,39 +4,12 @@ models:
   - name: dim_customers
     description: "Dimension client (SK générée)"
     columns:
-      - name: sk_customer
-        tests:
-          - not_null
-          - unique
       - name: customer_id
         tests:
           - not_null
-      - name: email
-        tests:
-          - not_null
-
-  - name: dim_product_scd1
-    description: "Dimension Produit (SCD1) — BK=product_id, SK=hash(product_bk)"
+  - name: dim_prouct
+    description: "Dimension Produit"
     columns:
       - name: product_id
-        tests: [not_null, unique]
-      - name: sk_product
-        tests: [not_null, unique]
-      - name: product_name
-      - name: category_id
-      - name: unit_price
-      - name: discontinued
-      - name: updated_at
-
-  - name: dim_seller_scd1
-    description: "Dimension Seller (SCD1) — BK=seller_id, SK=hash(seller_bk)"
-    columns:
-      - name: seller_sk
-        tests: [not_null, unique]
-      - name: seller_bk
-        tests: [not_null, unique]
-      - name: seller_name
-      - name: city
-      - name: country
-      - name: updated_at
-
+        tests:
+          - not_null

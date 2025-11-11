@@ -11,7 +11,7 @@ with src as (
   select
     customer_id,
     -- SK déterministe (stable entre runs) : préfixe + hash (FARM_FINGERPRINT)
-    concat('C_', cast(abs(FARM_FINGERPRINT(concat(cast(customer_id as string), '||', coalesce(email,'')))) as string)) as sk_customer,
+ --   concat('C_', cast(abs(FARM_FINGERPRINT(cast(customer_id )) as string)) as sk_customer,
     first_name,
     last_name,
     lower(trim(email)) as email,
